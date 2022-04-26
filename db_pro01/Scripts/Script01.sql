@@ -1,19 +1,19 @@
---ÁúÀÇ¹®(QueryÀÛ¼º)
+--ì§ˆì˜ë¬¸(Queryìž‘ì„±)
 SELECT 'HELLO Oracle' FROM DUAL;
 
 /*
- * ÀÏ¹Ý »ç¿ëÀÚ °èÁ¤À» »õ·Î ¸¸µé¾î °ü¸®ÀÚ °èÁ¤°ú ºÐ¸®.
- * ¾Æ·¡ÀÇ ÀÛ¾÷Àº °ü¸®ÀÚ ±ÇÇÑÀÌ ÀÖ´Â °èÁ¤À» »ç¿ëÇØ¾ß ÇÔ.
+ * ì¼ë°˜ ì‚¬ìš©ìž ê³„ì •ì„ ìƒˆë¡œ ë§Œë“¤ì–´ ê´€ë¦¬ìž ê³„ì •ê³¼ ë¶„ë¦¬.
+ * ì•„ëž˜ì˜ ìž‘ì—…ì€ ê´€ë¦¬ìž ê¶Œí•œì´ ìžˆëŠ” ê³„ì •ì„ ì‚¬ìš©í•´ì•¼ í•¨.
  */
 
--- °èÁ¤°ú ÆÐ½º¿öµå »ý¼ºÇÏ´Â ¹æ¹ý(»ý¼º - CREATE, º¯°æ - ALTER)
+-- ê³„ì •ê³¼ íŒ¨ìŠ¤ì›Œë“œ ìƒì„±í•˜ëŠ” ë°©ë²•(ìƒì„± - CREATE, ë³€ê²½ - ALTER)
 CREATE USER puser1 IDENTIFIED BY puser1;
 
 /*
- * »ý¼ºÇÑ °èÁ¤¿¡ ±ÇÇÑ ºÎ¿©(Áï, Á¦¾î±â´ÉÀ» ºÎ¿©)
- * RESOURCE³ª CONNECT´Â °³º°ÀûÀÎ ±ÇÇÑµéÀÇ ¹­À½À¸·Î ±¸¼ºµÇ¾î ÀÖ´Ù.(ROLE ¿ªÇÒ)
- * CONNECT´Â Á¢¼Ó¸¸ ÇÏ´Â ¿ªÇÒ
- * RESOURCE´Â DBÀÚ¿øÀ» »ç¿ëÇÒ ¼ö ÀÖ°Ô ÇÏ´Â ¿ªÇÒ (CREATE SEQUENCE, CREATE TABLE, CREATE TRIGGER ...)
+ * ìƒì„±í•œ ê³„ì •ì— ê¶Œí•œ ë¶€ì—¬(ì¦‰, ì œì–´ê¸°ëŠ¥ì„ ë¶€ì—¬)
+ * RESOURCEë‚˜ CONNECTëŠ” ê°œë³„ì ì¸ ê¶Œí•œë“¤ì˜ ë¬¶ìŒìœ¼ë¡œ êµ¬ì„±ë˜ì–´ ìžˆë‹¤.(ROLE ì—­í• )
+ * CONNECTëŠ” ì ‘ì†ë§Œ í•˜ëŠ” ì—­í• 
+ * RESOURCEëŠ” DBìžì›ì„ ì‚¬ìš©í•  ìˆ˜ ìžˆê²Œ í•˜ëŠ” ì—­í•  (CREATE SEQUENCE, CREATE TABLE, CREATE TRIGGER ...)
  */
 GRANT RESOURCE, CONNECT TO puser1;
 GRANT INSERT ANY TABLE, UPDATE ANY TABLE
@@ -21,27 +21,21 @@ GRANT INSERT ANY TABLE, UPDATE ANY TABLE
  TO puser1;
 
  
--- ¸¶¿ì½º ¿ìÅ¬¸¯ - ½ÇÇà - È°¼ºÈ­µÈ DB¿¬°á ¼³Á¤
+-- ë§ˆìš°ìŠ¤ ìš°í´ë¦­ - ì‹¤í–‰ - í™œì„±í™”ëœ DBì—°ê²° ì„¤ì •
 
--- Å×ÀÌºí½ºÆäÀÌ½º »ç¿ë ±ÇÇÑ ºÎ¿©
+-- í…Œì´ë¸”ìŠ¤íŽ˜ì´ìŠ¤ ì‚¬ìš© ê¶Œí•œ ë¶€ì—¬
 ALTER USER puser1 quota 10M ON USERS;
 COMMIT;
  
--- »ç¿ëÀÚ °èÁ¤ ¸ñ·Ï È®ÀÎÇÏ´Â ¹ý.(USERNAME = ÄÃ·³¸í)
+-- ì‚¬ìš©ìž ê³„ì • ëª©ë¡ í™•ì¸í•˜ëŠ” ë²•.(USERNAME = ì»¬ëŸ¼ëª…)
 SELECT USERNAME FROM ALL_USERS;
 
--- °èÁ¤¿¡ ºÎ¿©ÇÑ ±ÇÇÑ È®ÀÎ (°ü¸®ÀÚ °èÁ¤)
+-- ê³„ì •ì— ë¶€ì—¬í•œ ê¶Œí•œ í™•ì¸ (ê´€ë¦¬ìž ê³„ì •)
 SELECT PRIVILEGE FROM DBA_SYS_PRIVS WHERE GRANTEE = 'PUSER1';
 
--- °èÁ¤¿¡ ºÎ¿©ÇÑ ROLE ±ÇÇÑ È®ÀÎ (°ü¸®ÀÚ °èÁ¤)
+-- ê³„ì •ì— ë¶€ì—¬í•œ ROLE ê¶Œí•œ í™•ì¸ (ê´€ë¦¬ìž ê³„ì •)
 SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE = 'PUSER1';
 
 COMMIT;
-
-
-
-
-
-
 
 

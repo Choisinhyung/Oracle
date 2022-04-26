@@ -1,8 +1,8 @@
 /*
- * µ¥ÀÌÅÍ Àß µé¾î°¬´ÂÁö È®ÀÎ ÇÏ´Â Å×ÀÌºí - HRÁ¤º¸ È®ÀÎ
+ * ë°ì´í„° ìž˜ ë“¤ì–´ê°”ëŠ”ì§€ í™•ì¸ í•˜ëŠ” í…Œì´ë¸” - HRì •ë³´ í™•ì¸
  */
 
--- Á÷¿ø Å×ÀÌºí
+-- ì§ì› í…Œì´ë¸”
 SELECT * FROM EMPLOYEES;
 SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME FROM EMPLOYEES;
 SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME FROM EMPLOYEES WHERE EMPLOYEE_ID = 100;
@@ -10,41 +10,41 @@ SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME FROM EMPLOYEES WHERE EMPLOYEE_ID > 100
 SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME FROM EMPLOYEES WHERE EMPLOYEE_ID != 100;
 SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME FROM EMPLOYEES WHERE EMPLOYEE_ID <> 100;
 
--- ºÎ¼­ Å×ÀÌºí
+-- ë¶€ì„œ í…Œì´ë¸”
 SELECT * FROM DEPARTMENTS;
 SELECT DEPARTMENT_ID, DEPARTMENT_NAME FROM DEPARTMENTS;
--- Á÷±Þ Å×ÀÌºí
+-- ì§ê¸‰ í…Œì´ë¸”
 SELECT * FROM JOBS;
 
--- ³ª¶ó Å×ÀÌºí
+-- ë‚˜ë¼ í…Œì´ë¸”
 SELECT * FROM COUNTRIES;
 
--- Áö¿ª Å×ÀÌºí(ÇØ´ç ±¹°¡)
+-- ì§€ì—­ í…Œì´ë¸”(í•´ë‹¹ êµ­ê°€)
 SELECT * FROM LOCATIONS;
 
--- ´ë·ú Á¤º¸ Å×ÀÌºí(¾ÆÇÁ¸®Ä«, ¾Æ½Ã¾Æ ... )
+-- ëŒ€ë¥™ ì •ë³´ í…Œì´ë¸”(ì•„í”„ë¦¬ì¹´, ì•„ì‹œì•„ ... )
 SELECT * FROM REGIONS;
 
 
 
 
---ÄÃ·³¸í¿¡ º°Äª ºÎ¿©(AS, "" »ý·« °¡´É, º°Äª¿¡ ¶ç¾î¾²±â°¡ ÀÖ´Â°æ¿ì¿¡´Â "" ²À ºÙ¿©¾ß ÇÔ)
-SELECT EMPLOYEE_ID AS "»ç¹ø" 
-	 , FIRST_NAME "ÀÌ¸§"
-	 , LAST_NAME ¼º
-	 , EMAIL "ÀÌ¸ÞÀÏ ÁÖ¼Ò"
+--ì»¬ëŸ¼ëª…ì— ë³„ì¹­ ë¶€ì—¬(AS, "" ìƒëžµ ê°€ëŠ¥, ë³„ì¹­ì— ë„ì–´ì“°ê¸°ê°€ ìžˆëŠ”ê²½ìš°ì—ëŠ” "" ê¼­ ë¶™ì—¬ì•¼ í•¨)
+SELECT EMPLOYEE_ID AS "ì‚¬ë²ˆ" 
+	 , FIRST_NAME "ì´ë¦„"
+	 , LAST_NAME ì„±
+	 , EMAIL "ì´ë©”ì¼ ì£¼ì†Œ"
 	FROM EMPLOYEES;
 
--- ÄÃ·³°úÀÇ ¿¬»ê(¹®ÀÚ¿­ °áÇÕÀº ||¿¬»êÀÚ)
-SELECT EMPLOYEE_ID "»ç¹ø"
-	 , LAST_NAME || ' ' || FIRST_NAME AS "¼º¸í"
-	 -- ¼öÄ¡°ª¿¡ ´ëÇÑ ¿¬»ê
-	 , SALARY * 12 || '$' "¿¬ºÀ" 
+-- ì»¬ëŸ¼ê³¼ì˜ ì—°ì‚°(ë¬¸ìžì—´ ê²°í•©ì€ ||ì—°ì‚°ìž)
+SELECT EMPLOYEE_ID "ì‚¬ë²ˆ"
+	 , LAST_NAME || ' ' || FIRST_NAME AS "ì„±ëª…"
+	 -- ìˆ˜ì¹˜ê°’ì— ëŒ€í•œ ì—°ì‚°
+	 , SALARY * 12 || '$' "ì—°ë´‰" 
   FROM EMPLOYEES;
 
--- Á¶°ÇÀý WHERE º°Äª¸í¿¡ »ç¹øÀÌ¶ó´Â ÀÌ¸§À» Á¤ÀÇÇØµµ Á¶°ÇÀº ¿ø·¡ Å×ÀÌºí¿¡ ÀÖ´Â ÄÃ·³¸íÀ» »ç¿ëÇÑ´Ù.
- -- ½ÇÇà¼ø¼­ : FROM > WHERE > SELECT
-SELECT EMPLOYEE_ID "»ç¹ø"
+-- ì¡°ê±´ì ˆ WHERE ë³„ì¹­ëª…ì— ì‚¬ë²ˆì´ë¼ëŠ” ì´ë¦„ì„ ì •ì˜í•´ë„ ì¡°ê±´ì€ ì›ëž˜ í…Œì´ë¸”ì— ìžˆëŠ” ì»¬ëŸ¼ëª…ì„ ì‚¬ìš©í•œë‹¤.
+ -- ì‹¤í–‰ìˆœì„œ : FROM > WHERE > SELECT
+SELECT EMPLOYEE_ID "ì‚¬ë²ˆ"
 	 , FIRST_NAME
 	 , LAST_NAME
 	 , EMAIL
@@ -58,10 +58,10 @@ SELECT EMPLOYEE_ID "»ç¹ø"
  WHERE EMPLOYEE_ID > 200;
 
 /*
- *  Á¶°ÇÀý¿¡¼­ »ç¿ëÇÏ´Â ¿¬»êÀÚ
+ *  ì¡°ê±´ì ˆì—ì„œ ì‚¬ìš©í•˜ëŠ” ì—°ì‚°ìž
  * AND, OR, IN, NOT, NOT IN, BETWEEN ... AND
  * LIKE, IS NULL, IS NOT NULL
- * ¿ì¼±¼øÀ§ : NOT > AND > OR
+ * ìš°ì„ ìˆœìœ„ : NOT > AND > OR
  */
 
 SELECT * FROM EMPLOYEES
@@ -75,26 +75,26 @@ SELECT * FROM EMPLOYEES
 SELECT * FROM EMPLOYEES
  WHERE NOT EMPLOYEE_ID > 200;
 
--- ¼Ò°ýÈ£¸¦ ºÙ¿©¼­ ¿¬»êÀÇ ¿ì¼±¼øÀ§ ÁöÁ¤ °¡´É
+-- ì†Œê´„í˜¸ë¥¼ ë¶™ì—¬ì„œ ì—°ì‚°ì˜ ìš°ì„ ìˆœìœ„ ì§€ì • ê°€ëŠ¥
 SELECT * FROM EMPLOYEES
  WHERE (NOT EMPLOYEE_ID > 200)
    AND SALARY >= 1000;
 
--- ÇØ´ç °ª ÁöÁ¤
+-- í•´ë‹¹ ê°’ ì§€ì •
 SELECT * FROM EMPLOYEES
  WHERE EMPLOYEE_ID IN (200, 201, 202, 203);
 
 SELECT * FROM EMPLOYEES
  WHERE EMPLOYEE_ID NOT IN (200, 201, 202, 203);
 
--- ¿¬¼ÓµÈ ¹üÀ§ÀÇ ¼öÄ¡ ÁöÁ¤½Ã BETWEEN A AND B »ç¿ë
+-- ì—°ì†ëœ ë²”ìœ„ì˜ ìˆ˜ì¹˜ ì§€ì •ì‹œ BETWEEN A AND B ì‚¬ìš©
 SELECT * FROM EMPLOYEES
  WHERE EMPLOYEE_ID BETWEEN 200 AND 203;
 
 SELECT * FROM EMPLOYEES
  WHERE EMPLOYEE_ID NOT BETWEEN 200 AND 203;
 
---¹®ÀÚ¿­ °ü·Ã °Ë»ö½Ã LIKE %
+--ë¬¸ìžì—´ ê´€ë ¨ ê²€ìƒ‰ì‹œ LIKE %
 SELECT * FROM EMPLOYEES
  WHERE JOB_ID LIKE 'AD%';
 
@@ -104,7 +104,7 @@ SELECT * FROM EMPLOYEES
 SELECT * FROM EMPLOYEES
  WHERE JOB_ID LIKE '%A%';
 
--- ÀÚ¸´¼ö ÁöÁ¤½Ã LIKE _ »ç¿ë (Æ¯Á¤ Çü½ÄÀ¸·Î ±¸¼ºµÇ´Â ¹®ÀÚ¿­ ³ªÅ¸³»±â)
+-- ìžë¦¿ìˆ˜ ì§€ì •ì‹œ LIKE _ ì‚¬ìš© (íŠ¹ì • í˜•ì‹ìœ¼ë¡œ êµ¬ì„±ë˜ëŠ” ë¬¸ìžì—´ ë‚˜íƒ€ë‚´ê¸°)
 SELECT * FROM EMPLOYEES
  WHERE PHONE_NUMBER LIKE '___.127.____';
 
@@ -117,7 +117,7 @@ SELECT * FROM EMPLOYEES
 SELECT * FROM EMPLOYEES
  WHERE JOB_ID LIKE '%$____' ESCAPE '$';
 
--- NULL°ª Á¶È¸(ºñ±³¿¬»ê »ç¿ë ºÒ°¡ : >,<,=,!=)
+-- NULLê°’ ì¡°íšŒ(ë¹„êµì—°ì‚° ì‚¬ìš© ë¶ˆê°€ : >,<,=,!=)
 SELECT EMPLOYEE_ID
 	 , FIRST_NAME
 	 , LAST_NAME
@@ -133,7 +133,7 @@ SELECT EMPLOYEE_ID
   FROM EMPLOYEES
  WHERE COMMISSION_PCT IS NOT NULL;
 
--- º°Äª ºÎ¿©½Ã "" / ¹®ÀÚ¿­ ¸®ÅÍ·² »ç¿ë½Ã ''
+-- ë³„ì¹­ ë¶€ì—¬ì‹œ "" / ë¬¸ìžì—´ ë¦¬í„°ëŸ´ ì‚¬ìš©ì‹œ ''
 
 
 

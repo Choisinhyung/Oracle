@@ -1,61 +1,58 @@
 /*
- * EMPLOYEES Å×ÀÌºíÀÇ Á÷¿øÀÌ¸§, ÀÌ¸ÞÀÏ, ÀüÈ­¹øÈ£, °í¿ëÀÏÀ» Á¶È¸ÇÑ´Ù.
- *		Á÷¿ø ÀÌ¸§Àº ¼º°ú ÀÌ¸§À» ÇÏ³ªÀÇ ÄÃ·³À¸·Î ¸¸µé¾î¾ß ÇÑ´Ù.
- *		ÀÌ¸ÞÀÏ µÚ¿¡´Â @employees.co.kr À» ºÙ¿©¾ß ÇÑ´Ù.
- *		ÀüÈ­¹øÈ£ÀÇ ±¸ºÐÀÚ´Â .´ë½Å -ÀÌ »ç¿ëµÇµµ·Ï ÇÑ´Ù.
- * 		°í¿ëÀÏÀº xxxx³â xx¿ù xxÀÏ Çü½ÄÀ¸·Î Ãâ·ÂµÇ°Ô ÇÑ´Ù.
+ * EMPLOYEES í…Œì´ë¸”ì˜ ì§ì›ì´ë¦„, ì´ë©”ì¼, ì „í™”ë²ˆí˜¸, ê³ ìš©ì¼ì„ ì¡°íšŒí•œë‹¤.
+ *		ì§ì› ì´ë¦„ì€ ì„±ê³¼ ì´ë¦„ì„ í•˜ë‚˜ì˜ ì»¬ëŸ¼ìœ¼ë¡œ ë§Œë“¤ì–´ì•¼ í•œë‹¤.
+ *		ì´ë©”ì¼ ë’¤ì—ëŠ” @employees.co.kr ì„ ë¶™ì—¬ì•¼ í•œë‹¤.
+ *		ì „í™”ë²ˆí˜¸ì˜ êµ¬ë¶„ìžëŠ” .ëŒ€ì‹  -ì´ ì‚¬ìš©ë˜ë„ë¡ í•œë‹¤.
+ * 		ê³ ìš©ì¼ì€ xxxxë…„ xxì›” xxì¼ í˜•ì‹ìœ¼ë¡œ ì¶œë ¥ë˜ê²Œ í•œë‹¤.
  */
 
-SELECT FIRST_NAME || ' ' || LAST_NAME AS "Á÷¿øÀÌ¸§"
+SELECT FIRST_NAME || ' ' || LAST_NAME AS "ì§ì›ì´ë¦„"
      , EMAIL || '@employees.co.kr' AS "EMAIL" 
      , REPLACE(PHONE_NUMBER, '.', '-') AS "PHONE_NUMBER"
-     , TO_CHAR(SYSDATE, 'YYYY"³â" MM"¿ù" DD"ÀÏ"') AS "HIRE_DATE"
+     , TO_CHAR(SYSDATE, 'YYYY"ë…„" MM"ì›”" DD"ì¼"') AS "HIRE_DATE"
  FROM EMPLOYEES;
 
 /*
- * EMPLOYEES Å×ÀÌºí¿¡¼­ Á÷¿øÀÌ¸§, ±Þ¿©, ¿¬ºÀÀ» Á¶È¸ÇÑ´Ù.
- * 		¿¬ºÀÀº ±Þ¿©¿¡ 12°³¿ùÀ» °öÇÏ´Â °ÍÀ¸·Î ÇÑ´Ù.
+ * EMPLOYEES í…Œì´ë¸”ì—ì„œ ì§ì›ì´ë¦„, ê¸‰ì—¬, ì—°ë´‰ì„ ì¡°íšŒí•œë‹¤.
+ * 		ì—°ë´‰ì€ ê¸‰ì—¬ì— 12ê°œì›”ì„ ê³±í•˜ëŠ” ê²ƒìœ¼ë¡œ í•œë‹¤.
  */
 
-SELECT FIRST_NAME || ' ' || LAST_NAME AS "Á÷¿øÀÌ¸§"
+SELECT FIRST_NAME || ' ' || LAST_NAME AS "ì§ì›ì´ë¦„"
      , SALARY
-     , SALARY * 12 AS "¿¬ºÀ"
+     , SALARY * 12 AS "ì—°ë´‰"
   FROM EMPLOYEES;
 
- -- EMPLOYEES Å×ÀÌºí¿¡¼­ ÀüÈ­¹øÈ£°¡ 011·Î ½ÃÀÛÇÏ´Â Á÷¿øÀÇ ¼º+ÀÌ¸§°ú »ç¿ø¹øÈ£, ÀüÈ­¹øÈ£¸¦ Á¶È¸ÇÑ´Ù.
+ -- EMPLOYEES í…Œì´ë¸”ì—ì„œ ì „í™”ë²ˆí˜¸ê°€ 011ë¡œ ì‹œìž‘í•˜ëŠ” ì§ì›ì˜ ì„±+ì´ë¦„ê³¼ ì‚¬ì›ë²ˆí˜¸, ì „í™”ë²ˆí˜¸ë¥¼ ì¡°íšŒí•œë‹¤.
 
-SELECT FIRST_NAME || ' ' || LAST_NAME AS "Á÷¿øÀÌ¸§"
-     , EMPLOYEE_ID AS "»ç¿ø¹øÈ£"
+SELECT FIRST_NAME || ' ' || LAST_NAME AS "ì§ì›ì´ë¦„"
+     , EMPLOYEE_ID AS "ì‚¬ì›ë²ˆí˜¸"
      , PHONE_NUMBER
   FROM EMPLOYEES
  WHERE PHONE_NUMBER LIKE '011%';
 
 /*
- * EMPLOYEES Å×ÀÌºí¿¡¼­ Ä¿¹Ì¼ÇÀÌ Á¸ÀçÇÏ´Â Á÷¿øÀÇ ÀÌ¸§°ú ±Þ¿©, ¿¬ºÀÀ» Á¶È¸ÇÑ´Ù.
- * 		¿¬ºÀ¿¡´Â Ä¿¹Ì¼ÇÀÌ °è»êµÈ ¿¬ºÀÀ¸·Î Á¶È¸ÇÑ´Ù.
+ * EMPLOYEES í…Œì´ë¸”ì—ì„œ ì»¤ë¯¸ì…˜ì´ ì¡´ìž¬í•˜ëŠ” ì§ì›ì˜ ì´ë¦„ê³¼ ê¸‰ì—¬, ì—°ë´‰ì„ ì¡°íšŒí•œë‹¤.
+ * 		ì—°ë´‰ì—ëŠ” ì»¤ë¯¸ì…˜ì´ ê³„ì‚°ëœ ì—°ë´‰ìœ¼ë¡œ ì¡°íšŒí•œë‹¤.
  */
-SELECT  FIRST_NAME || ' ' || LAST_NAME AS "Á÷¿øÀÌ¸§"
-      , SALARY AS "±Þ¿©"
+SELECT  FIRST_NAME || ' ' || LAST_NAME AS "ì§ì›ì´ë¦„"
+      , SALARY AS "ê¸‰ì—¬"
       , COMMISSION_PCT
-      , SALARY * 12 + SALARY * NVL(0, COMMISSION_PCT) AS "¿¬ºÀ"
+      , SALARY * 12 + SALARY * NVL(0, COMMISSION_PCT) AS "ì—°ë´‰"
   FROM EMPLOYEES;
 
--- EMPLOYEES Å×ÀÌºí¿¡¼­ 2000³âµµ¿¡ °í¿ëµÈ Á÷¿øÀ» Á¶È¸ÇÑ´Ù.
+-- EMPLOYEES í…Œì´ë¸”ì—ì„œ 2000ë…„ë„ì— ê³ ìš©ëœ ì§ì›ì„ ì¡°íšŒí•œë‹¤.
 SELECT * 
   FROM EMPLOYEES
  WHERE HIRE_DATE BETWEEN TO_DATE('20000101') AND TO_DATE('20001231');
 
--- EMPLOYEES Å×ÀÌºí¿¡¼­ °í¿ëÀÏ(HIRE_DATE)¸¦ ±âÁØÀ¸·Î 1999³â 12¿ù 31ÀÏÀ» ±îÁöÀÇ ±Ù¹« °³¿ù¼ö°¡ 60°³¿ù ÀÌ»óÀÎ Á÷¿øÀ» Á¶È¸ÇÑ´Ù. 
+-- EMPLOYEES í…Œì´ë¸”ì—ì„œ ê³ ìš©ì¼(HIRE_DATE)ë¥¼ ê¸°ì¤€ìœ¼ë¡œ 1999ë…„ 12ì›” 31ì¼ì„ ê¹Œì§€ì˜ ê·¼ë¬´ ê°œì›”ìˆ˜ê°€ 60ê°œì›” ì´ìƒì¸ ì§ì›ì„ ì¡°íšŒí•œë‹¤. 
 SELECT *
   FROM EMPLOYEES
  WHERE MONTHS_BETWEEN(TO_DATE('19991231'), HIRE_DATE) >= 60; 
 
--- EMPLOYEES Å×ÀÌºí¿¡¼­ °í¿ëÀÏ(HIRE_DATE)¸¦ ±âÁØÀ¸·Î 1999³â 12¿ù 31ÀÏÀ» ±îÁöÀÇ ±Ù¼Ó³âÀÌ 7³â ÀÌ»óÀÎ Á÷¿øÀ» Á¶È¸ÇÑ´Ù.
+-- EMPLOYEES í…Œì´ë¸”ì—ì„œ ê³ ìš©ì¼(HIRE_DATE)ë¥¼ ê¸°ì¤€ìœ¼ë¡œ 1999ë…„ 12ì›” 31ì¼ì„ ê¹Œì§€ì˜ ê·¼ì†ë…„ì´ 7ë…„ ì´ìƒì¸ ì§ì›ì„ ì¡°íšŒí•œë‹¤.
 SELECT *
   FROM EMPLOYEES
  WHERE MONTHS_BETWEEN(TO_DATE(19991231), HIRE_DATE) >= 12 * 7;
  
-
-
-
 

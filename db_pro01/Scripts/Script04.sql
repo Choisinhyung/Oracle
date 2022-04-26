@@ -1,33 +1,33 @@
 /*
- * ÇÔ¼ö(FUNCTION) - ±âº»À¸·Î Á¦°ø
- *  1. ´ÜÀÏ Çà ÇÔ¼ö : °¢ Çà¸¶´Ù ¹Ýº¹ÀûÀ¸·Î Àû¿ëµÇ¾î ÀÔ·Â ¹ÞÀº ÇàÀÇ °³¼ö¸¸Å­ °á°ú ¹ÝÈ¯
- *  2. ±×·ì ÇÔ¼ö : Æ¯Á¤ ÇàµéÀÇ ÁýÇÕÀ¸·Î ±×·ìÀÌ Çü¼ºµÇ¾î Àû¿ë. ±×·ì ´ç 1°³ÀÇ °á°ú ¹ÝÈ¯ (ex. GROUP BY)
+ * í•¨ìˆ˜(FUNCTION) - ê¸°ë³¸ìœ¼ë¡œ ì œê³µ
+ *  1. ë‹¨ì¼ í–‰ í•¨ìˆ˜ : ê° í–‰ë§ˆë‹¤ ë°˜ë³µì ìœ¼ë¡œ ì ìš©ë˜ì–´ ìž…ë ¥ ë°›ì€ í–‰ì˜ ê°œìˆ˜ë§Œí¼ ê²°ê³¼ ë°˜í™˜
+ *  2. ê·¸ë£¹ í•¨ìˆ˜ : íŠ¹ì • í–‰ë“¤ì˜ ì§‘í•©ìœ¼ë¡œ ê·¸ë£¹ì´ í˜•ì„±ë˜ì–´ ì ìš©. ê·¸ë£¹ ë‹¹ 1ê°œì˜ ê²°ê³¼ ë°˜í™˜ (ex. GROUP BY)
 */
 
--- LENGTH() : ±æÀÌ
+-- LENGTH() : ê¸¸ì´
 SELECT FIRST_NAME
-     , LENGTH(FIRST_NAME) AS "±æÀÌ" 
+     , LENGTH(FIRST_NAME) AS "ê¸¸ì´" 
   FROM EMPLOYEES;
 
--- DUALÅ×ÀÌºíÀº Å×½ºÆ®¿ë(´õ¹Ì)
+-- DUALí…Œì´ë¸”ì€ í…ŒìŠ¤íŠ¸ìš©(ë”ë¯¸)
 SELECT 'Hello Oracle'
 	 , LENGTH('Hello Oracle')
-	 , LENGTH('¿À¶óÅ¬ ¾È³ç')
+	 , LENGTH('ì˜¤ë¼í´ ì•ˆë…•')
   FROM DUAL;
  
 --LENGTHB : byte
  SELECT 'Hello Oracle'
 	 , LENGTHB('Hello Oracle')
-	 , LENGTHB('¿À¶óÅ¬ ¾È³ç')
+	 , LENGTHB('ì˜¤ë¼í´ ì•ˆë…•')
   FROM DUAL;
 
--- INSTR : À§Ä¡°ª Ã£±â (¾Õ¿¡ ÀÖ´Â @´Â 1, µÚ¿¡ ÀÖ´Â @´Â -1) , -1´ÙÀ½Àº ¹Ýº¹È½¼ö(µÚ¿¡¼­ µÎ¹øÂ°¿¡ ÀÖ´Â @ÀÇ À§Ä¡¸¦ Ã£¾Æ¶ó)
+-- INSTR : ìœ„ì¹˜ê°’ ì°¾ê¸° (ì•žì— ìžˆëŠ” @ëŠ” 1, ë’¤ì— ìžˆëŠ” @ëŠ” -1) , -1ë‹¤ìŒì€ ë°˜ë³µíšŸìˆ˜(ë’¤ì—ì„œ ë‘ë²ˆì§¸ì— ìžˆëŠ” @ì˜ ìœ„ì¹˜ë¥¼ ì°¾ì•„ë¼)
 SELECT INSTR('sample@example.com', '@', 1)
 	 , INSTR('sample@example.com', '@', -1)
 	 , INSTR('sample@example.com', '@', -1, 2)
   FROM DUAL;
 
--- Left Padding / Right Padding : ¿©¹é(°ø¹é °¹¼ö, ¿©¹éÀ» ´ëÃ¼ÇÒ ¹®ÀÚÀÔ·Â)
+-- Left Padding / Right Padding : ì—¬ë°±(ê³µë°± ê°¯ìˆ˜, ì—¬ë°±ì„ ëŒ€ì²´í•  ë¬¸ìžìž…ë ¥)
 SELECT '!' || LPAD('A', 4)
 	 , '!' || LPAD('AB', 4)
 	 , '!' || LPAD('ABC', 4)
@@ -40,7 +40,7 @@ SELECT '!' || LPAD('A', 4)
 	 , RPAD('A', 4, '_') || '!'
   FROM DUAL;
 
--- Legt Trim / Right Trim / Trim : Á¦°Å
+-- Legt Trim / Right Trim / Trim : ì œê±°
 SELECT RTRIM('userId@example.com', '@example.com')
      , LTRIM('010-1234-5678', '010')
      , LTRIM(RTRIM('    PASSWORD INPUT    '))
@@ -51,67 +51,67 @@ SELECT RTRIM('userId@example.com', '@example.com')
      , TRIM(BOTH'A' FROM 'AAAAHelloAAAA')
   FROM DUAL;
 
---SubString(½ÃÀÛ À§Ä¡°ª ~ ¾îµð±îÁö Ãâ·ÂÇÒ°ÇÁö À§Ä¡°ª)
+--SubString(ì‹œìž‘ ìœ„ì¹˜ê°’ ~ ì–´ë””ê¹Œì§€ ì¶œë ¥í• ê±´ì§€ ìœ„ì¹˜ê°’)
 SELECT SUBSTR('userId@example.com', 1, 6)
 	 , SUBSTR('userId@example.com', 8, 7)
 	 , SUBSTR('userId@example.com', 8)
 	 , SUBSTR('userId@example.com', -3)
 FROM DUAL;
 
--- LOWER / UPPER : ´ë¼Ò¹®ÀÚ º¯È¯
--- INITCAP : ´Ü¾îº° Ã¹ ¹øÂ° ±ÛÀÚ¿¡ ´ëÇØ CAP
+-- LOWER / UPPER : ëŒ€ì†Œë¬¸ìž ë³€í™˜
+-- INITCAP : ë‹¨ì–´ë³„ ì²« ë²ˆì§¸ ê¸€ìžì— ëŒ€í•´ CAP
 SELECT LOWER('userId@example.com')
      , UPPER('userId@example.com')
      , INITCAP('userId@example.com')
   FROM DUAL;
  
--- CONCAT : ¹®ÀÚ¿­ °áÇÕ // ORÀÌ³ª CONCAT»ç¿ëÇÏ¸é µÊ
+-- CONCAT : ë¬¸ìžì—´ ê²°í•© // ORì´ë‚˜ CONCATì‚¬ìš©í•˜ë©´ ë¨
 SELECT CONCAT('Hello', ' World')
   FROM DUAL;
  
--- REPLACE : ¹®ÀÚ¿­ º¯°æ(¿øº», Ã£À» ¹®ÀÚ¿­, º¯°æÇÒ ¹®ÀÚ¿­)
+-- REPLACE : ë¬¸ìžì—´ ë³€ê²½(ì›ë³¸, ì°¾ì„ ë¬¸ìžì—´, ë³€ê²½í•  ë¬¸ìžì—´)
 SELECT REPLACE('userId@example.com', '@example.com', '@example.co.kr') 
   FROM DUAL;
 
--- ABS : ¼ýÀÚÃ³¸®(À½¼ö°ªÀ» ¾ç¼ö·Î º¯°æ)
+-- ABS : ìˆ«ìžì²˜ë¦¬(ìŒìˆ˜ê°’ì„ ì–‘ìˆ˜ë¡œ ë³€ê²½)
 SELECT ABS(10)
   	 , ABS(-10)
   	 , ABS(-10.12)
   FROM DUAL;
   
--- MOD : ³ª¸ÓÁö ±¸ÇÏ´Â ÇÔ¼ö
+-- MOD : ë‚˜ë¨¸ì§€ êµ¬í•˜ëŠ” í•¨ìˆ˜
 SELECT MOD(10, 3)
   	 , MOD(-10, 3)
   	 , MOD(10.5, 3)
   	 , MOD(-10.5, 3)
   FROM DUAL;
 
--- ROUND : ¹Ý¿Ã¸²(¼ýÀÚÁöÁ¤, ¿øÇÏ´Â ÀÚ¸´¼ö)
+-- ROUND : ë°˜ì˜¬ë¦¼(ìˆ«ìžì§€ì •, ì›í•˜ëŠ” ìžë¦¿ìˆ˜)
 SELECT ROUND(10.4)
      , ROUND(10.5)
      , ROUND(10.45, 1)
      , ROUND(18.456, -1)
   FROM DUAL;
   
--- FLOOR / CEIL : ¼Ò¼öÁ¡ ÀÚ¸® ¹ö¸²
+-- FLOOR / CEIL : ì†Œìˆ˜ì  ìžë¦¬ ë²„ë¦¼
 SELECT FLOOR(10.34)
      , FLOOR(-10.34)
      , CEIL(10.34)
      , CEIL(-10.34)
   FROM DUAL;
 
--- TRUNC : ¹ö¸²(Àý»ç)
+-- TRUNC : ë²„ë¦¼(ì ˆì‚¬)
 SELECT TRUNC(10.34, 1)
      , TRUNC(10.36, 1)
      , TRUNC(10.3456, 2)
      , TRUNC(1234, -1)
   FROM DUAL;
  
--- SYSDATE : ÇöÀç ³¯Â¥ / Çü½ÄÀº Tool¸¶´Ù ´Ù¸§(SQL Developer, Visual Studio Code ...)
--- ADD_MONTHS(SYSDATE, ¼ýÀÚ) : ÇöÀç ¿ù¿¡ +ÇÏ°Å³ª -
--- LAST_DAY : ÇöÀç ¿ùÀÇ ¸¶Áö¸· ³¯
--- NEXT_DAY(SYSDATE, ¿äÀÏ) : ÇöÀç ³¯Â¥¿¡¼­ °¡Àå °¡±î¿î ¿äÀÏ
--- NEXT_DAY(SYSDATE, ¼ýÀÚ) : 1-ÀÏ¿äÀÏ ~ 7-Åä¿äÀÏ
+-- SYSDATE : í˜„ìž¬ ë‚ ì§œ / í˜•ì‹ì€ Toolë§ˆë‹¤ ë‹¤ë¦„(SQL Developer, Visual Studio Code ...)
+-- ADD_MONTHS(SYSDATE, ìˆ«ìž) : í˜„ìž¬ ì›”ì— +í•˜ê±°ë‚˜ -
+-- LAST_DAY : í˜„ìž¬ ì›”ì˜ ë§ˆì§€ë§‰ ë‚ 
+-- NEXT_DAY(SYSDATE, ìš”ì¼) : í˜„ìž¬ ë‚ ì§œì—ì„œ ê°€ìž¥ ê°€ê¹Œìš´ ìš”ì¼
+-- NEXT_DAY(SYSDATE, ìˆ«ìž) : 1-ì¼ìš”ì¼ ~ 7-í† ìš”ì¼
 
 --ALTER SESSION SET NLS_LANGUAGE = AMERICAN;
 ALTER SESSION SET NLS_LANGUAGE = KOREAN;
@@ -123,12 +123,12 @@ SELECT SYSDATE
      , ADD_MONTHS(SYSDATE, -3) 
      , LAST_DAY(SYSDATE)
      , NEXT_DAY(SYSDATE, 'FRI')
-   --, NEXT_DAY(SYSDATE, '±Ý¿äÀÏ')
-   --, NEXT_DAY(SYSDATE, '±Ý')
+   --, NEXT_DAY(SYSDATE, 'ê¸ˆìš”ì¼')
+   --, NEXT_DAY(SYSDATE, 'ê¸ˆ')
      , NEXT_DAY(SYSDATE, 6)
   FROM DUAL;
    
---EXTRACT : (YEAR/MONTH/DAY FROM SYSDATE) - ³â ¿ù ÀÏ / ¼¼°èÇ¥ÁØ½Ã
+--EXTRACT : (YEAR/MONTH/DAY FROM SYSDATE) - ë…„ ì›” ì¼ / ì„¸ê³„í‘œì¤€ì‹œ
 SELECT EXTRACT(YEAR FROM SYSDATE)
      , EXTRACT(MONTH FROM SYSDATE)
      , EXTRACT(DAY FROM SYSDATE)
@@ -138,12 +138,12 @@ SELECT EXTRACT(YEAR FROM SYSDATE)
      , SYSTIMESTAMP
   FROM DUAL;
   
---MONTHS_BETWEEN : µÎ ³¯Â¥ÀÇ Â÷ÀÌ
+--MONTHS_BETWEEN : ë‘ ë‚ ì§œì˜ ì°¨ì´
 SELECT MONTHS_BETWEEN(SYSDATE, ADD_MONTHS(SYSDATE, 3))
      , MONTHS_BETWEEN(ADD_MONTHS(SYSDATE, 3), SYSDATE)
   FROM DUAL;
 
--- ³¯Â¥ Ãß°¡
+-- ë‚ ì§œ ì¶”ê°€
 SELECT SYSDATE
      , SYSDATE +1
      , SYSDATE +2
@@ -157,7 +157,7 @@ SELECT SYSDATE
      , SYSDATE + INTERVAL '1' SECOND
   FROM DUAL;
 
--- Å¸ÀÓ½ºÅÆÇÁ ³¯Â¥ Ãß°¡
+-- íƒ€ìž„ìŠ¤íƒ¬í”„ ë‚ ì§œ ì¶”ê°€
 SELECT SYSTIMESTAMP 
      , SYSTIMESTAMP + INTERVAL '3' DAY
      , SYSTIMESTAMP + INTERVAL '3' MONTH
@@ -170,10 +170,10 @@ SELECT SYSTIMESTAMP
      , SYSTIMESTAMP - INTERVAL '3' HOUR
   FROM DUAL;
   
--- TO_CHAR : ¹®ÀÚ ¹ÝÈ¯ (¼ýÀÚ´Â 1,000¿Í °°Àº Çü½ÄÀ¸·Î Ç¥±âµÊ)
+-- TO_CHAR : ë¬¸ìž ë°˜í™˜ (ìˆ«ìžëŠ” 1,000ì™€ ê°™ì€ í˜•ì‹ìœ¼ë¡œ í‘œê¸°ë¨)
 SELECT TO_CHAR(1234)
      , TO_CHAR(SYSDATE, 'YYYY/MM/DD')
-     , TO_CHAR(SYSDATE, 'YYYY"³â"MM"¿ù"DD"ÀÏ"')
+     , TO_CHAR(SYSDATE, 'YYYY"ë…„"MM"ì›”"DD"ì¼"')
      , TO_CHAR(SYSDATE, 'YYYY-MM-DD AM HH:MI:SS')
      , TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')
      , TO_CHAR(SYSTIMESTAMP, 'YYYY-MM-DD AM HH24:MI:SS.FF3')
@@ -182,21 +182,21 @@ SELECT TO_CHAR(1234)
      , TO_CHAR(1000000, '000,000,000')
   FROM DUAL;
 
--- ÅëÈ­ ´ÜÀ§ÀÇ ½Éº¼ º¯°æÀÌ ÇÊ¿äÇÑ °æ¿ì ´ÙÀ½ÀÇ ALTER¹®À» »ç¿ë 
-ALTER SESSION SET NLS_CURRENCY = '£Ü';
+-- í†µí™” ë‹¨ìœ„ì˜ ì‹¬ë³¼ ë³€ê²½ì´ í•„ìš”í•œ ê²½ìš° ë‹¤ìŒì˜ ALTERë¬¸ì„ ì‚¬ìš© 
+ALTER SESSION SET NLS_CURRENCY = 'ï¿¦';
 SELECT * FROM V$NLS_PARAMETERS WHERE PARAMETER LIKE 'NLS_CURRENCY'
 
--- TO_DATE : ³¯Â¥ ¹ÝÈ¯
+-- TO_DATE : ë‚ ì§œ ë°˜í™˜
 SELECT TO_DATE('20220425', 'YYYYMMDD')
      , TO_DATE('20220425')
   FROM DUAL;
  
--- TO_NUMBER : ¼ýÀÚ º¯È¯
+-- TO_NUMBER : ìˆ«ìž ë³€í™˜
 SELECT TO_NUMBER('20220425')
      , TO_NUMBER('20,220,425', '999,999,999')
-     , TO_NUMBER('FFFF', 'XXXX') -- 16Áø¼ö º¯È¯
+     , TO_NUMBER('FFFF', 'XXXX') -- 16ì§„ìˆ˜ ë³€í™˜
   FROM DUAL;
 
--- ³¯Â¥¸¦ ¹®ÀÚ·Î º¯È¯ ÈÄ ¼ýÀÚ·Î º¯È¯
+-- ë‚ ì§œë¥¼ ë¬¸ìžë¡œ ë³€í™˜ í›„ ìˆ«ìžë¡œ ë³€í™˜
 SELECT TO_NUMBER(TO_CHAR(SYSDATE, 'YYYYMMDD'))
   FROM DUAL;
