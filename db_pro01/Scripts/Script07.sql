@@ -1,0 +1,13 @@
+-- GROUP BY % HAVING
+-- SELECT ~ FROM ~ WHERE ~ ORDER BY
+
+SELECT EMPLOYEE_ID
+     , FIRST_NAME || ' ' || LAST_NAME AS "NAME"
+     , SALARY
+     , HIRE_DATE
+     , COMMISSION_PCT
+  FROM EMPLOYEES
+ ORDER BY 5 NULLS FIRST;
+-- ORDER BY NAME DESC
+
+--------------------지우고 다시 풀어보기~
