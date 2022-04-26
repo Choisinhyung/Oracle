@@ -24,20 +24,38 @@ SELECT FIRST_NAME || ' ' || LAST_NAME AS "직원이름"
 
  -- EMPLOYEES 테이블에서 전화번호가 011로 시작하는 직원의 성+이름과 사원번호, 전화번호를 조회한다.
 
-SELECT * FROM EMPLOYEES;
-
 SELECT FIRST_NAME || ' ' || LAST_NAME AS "직원이름"
      , EMPLOYEE_ID AS "사원번호"
-     , TO_CHAR(PHONE_NUMBER)
-  FROM EMPLOYEES;
+     , PHONE_NUMBER
+  FROM EMPLOYEES
+ WHERE PHONE_NUMBER LIKE '011%';
 
 /*
  * EMPLOYEES 테이블에서 커미션이 존재하는 직원의 이름과 급여, 연봉을 조회한다.
  * 		연봉에는 커미션이 계산된 연봉으로 조회한다.
  */
+SELECT  FIRST_NAME || ' ' || LAST_NAME AS "직원이름"
+      , SALARY AS "급여"
+      , COMMISSION_PCT
+      , SALARY * 12 + SALARY * NVL(0, COMMISSION_PCT) AS "연봉"
+  FROM EMPLOYEES;
 
 -- EMPLOYEES 테이블에서 2000년도에 고용된 직원을 조회한다.
+SELECT * 
+  FROM EMPLOYEES
+ WHERE HIRE_DATE BETWEEN TO_DATE('20000101') AND TO_DATE('20001231');
 
 -- EMPLOYEES 테이블에서 고용일(HIRE_DATE)를 기준으로 1999년 12월 31일을 까지의 근무 개월수가 60개월 이상인 직원을 조회한다. 
+SELECT *
+  FROM EMPLOYEES
+ WHERE MONTHS_BETWEEN(TO_DATE('19991231'), HIRE_DATE) >= 60; 
 
 -- EMPLOYEES 테이블에서 고용일(HIRE_DATE)를 기준으로 1999년 12월 31일을 까지의 근속년이 7년 이상인 직원을 조회한다.
+SELECT *
+  FROM EMPLOYEES
+ WHERE MONTHS_BETWEEN(TO_DATE(19991231), HIRE_DATE) >= 12 * 7;
+ 
+
+
+
+
