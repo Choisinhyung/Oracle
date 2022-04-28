@@ -16,6 +16,9 @@
  *  - FOREIGN KEY : 다른 테이블의 값을 참조하기 위한 용도로 사용 / 참조값이 있는 경우에만 저장할 수 있게 제약 /
  *  				참조 되는 데이터가 있는 경우 수정, 삭제를 임의로 하지 못하게 제약하기 위한 용도 - 외래키(FK), 참조키(값)이라고 한다.
  *  - CHECK : 미리 설정한 값만 저장할 수 있도록 검사를 하여 제약
+ * 
+ * 컬럼레벨 : 컬럼에 직접 명시하여 작성
+ * 테이블레벨 : 컬럼 외로 명시하여 작성(CONSTRAINT (FOREIGN KEY REFERENCES)) / 주로 복합 키 설정이 필요한 경우 사용(두개의 외래키 ...) - 컬럼레벨보다 보기에 깔끔하다.
  */
 
 CREATE 테이블명 (
@@ -37,20 +40,34 @@ LOB : LARGE OBJECT Byte DATA
 -- NOT NULL, UNIQUE
 
 CREATE TABLE sample_t (
-       u_id     NUMBER   PRIMARY KEY-- 컬럼 레벨 
-     , jumin    CHAR(13) UNIQUE
+       u_id     NUMBER       PRIMARY KEY-- 컬럼 레벨 
+     , jumin    CHAR(13)     UNIQUE
 	 , name     VARCHAR2(50) NOT NULL
-	 , age      NUMBER(3) DEFAULT(0)
-	 , gender   CHAR(1) CHECK(GENDER IN ('M', 'F'))
-     , birthday DATE DEFAULT(SYSDATE)
---   , PRIMARY KEY(u_id)
---   , UNIQUE(jumin) -- 테이블레벨
+	 , age      NUMBER(3)    DEFAULT(0)
+	 , gender   CHAR(1)      CHECK(GENDER IN ('M', 'F'))
+     , birthday DATE         DEFAULT(SYSDATE)
+     , ref_col  NUMBER       REFERENCES ref_t(r_id)
+     , CONSTRANT PK_U_ID     PRIMARY KEY(u_id)
+     , CONSTRANT UK_JUMIN    UNIQUE(jumin)
+     , CONSTRANT FK_REF_T_R_ID FOREIGN KEY(ref_col) REFERENCES ref_t(r_id)
+
 );
+-- 외래키 참조 확인하기위해 참조테이블 생성
+CREATE TABLE ref_t (
+       r_id NUMBER PRIMARY KEY
+     , note VARCHAR2(100)
+); 
+
+DROP TABLE ref_t;
+DROP TABLE sample_t;
 
 -- SAMPLE_T의 테이블을 검색
 SELECT * FROM USER_ALL_TABLES WHERE TABLE_NAME = 'SAMPLE_T';
 -- SAMPLE_T테이블의 컬럼을 검색
 SELECT * FROM USER_TAB_COLUMNS WHERE TABLE_NAME = 'SAMPLE_T';
+-- 제약조건에 대한 이름을 부여 (안해도 되지만 관리목적 ~ )
+SELECT * FROM USER_CONSTRANTS WHERE TABLE_NAME = 'SAMPLE_T';
+
 -- DESC SAMPLE_T;
 
 -- 어떤 데이터가 저장되어야 하는지 알 수 있는 주석
