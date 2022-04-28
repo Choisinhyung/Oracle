@@ -14,10 +14,9 @@ SELECT FIRST_NAME || ' ' || LAST_NAME AS "성명"
      , REPLACE(PHONE_NUMBER,'.', '-')AS "핸드폰 번호"
      , LOWER(EMAIL) || '@example.com' AS "이메일 주소"
      , TO_CHAR(HIRE_DATE, 'YYYY"년" MM"월" DD"일"') AS "고용일"
-     , TRUNC(MONTHS_BETWEEN(SYSDATE, ADD_MONTHS(HIRE_DATE, 3)) / 12) || '년' AS "근년일수"
-     , TO_CHAR(TRUNC(SALARY + (SALARY * COMMISSION_PCT), -3), '999,999,999') || '￦' AS "급여"
+     , TRUNC(MONTHS_BETWEEN(SYSDATE, ADD_MONTHS(HIRE_DATE, 3)) / 12) || '년' AS "근속년수"
+     , TRUNC(SALARY * 1260 * (1 + NVL(COMMISSION_PCT, 0)), -3) || '￦' AS "급여"
   FROM EMPLOYEES
- WHERE COMMISSION_PCT IS NOT NULL
  ORDER BY 4;
 
 /*
@@ -26,10 +25,20 @@ SELECT FIRST_NAME || ' ' || LAST_NAME AS "성명"
  * 번호별 회선 수에 추가로 전체 회선 수가 조회될 수 있도록 한다.
  */
 
-SELECT * FROM EMPLOYEES;
+SELECT NVL(SUBSTR(PHONE_NUMBER, 1, 3), '총 합') AS "회선 별"
+     , COUNT(SUBSTR(PHONE_NUMBER, 1, 3)) AS "사용 회선"
+  FROM EMPLOYEES
+ GROUP BY ROLLUP(SUBSTR(PHONE_NUMBER, 1, 3))
+ ORDER BY 1;
 
 /*
  * MANAGER_ID는 해당 EMPLOYEE_ID르 관리하는 관리자 정보가 연결되어 있는 정보이다.
  * 한 명의 관리자가 얼마나 많은 직원을 관리하고 있는지를 알 수 있도록 조회 쿼리를 작성한다.
  * MANAGER_ID가 NULL인 경우는 제외하여 조회하도록 한다.
  */
+
+SELECT MANAGER_ID AS "관리자ID"
+     , COUNT(*) AS "인원수"
+  FROM EMPLOYEES
+ WHERE MANAGER_ID IS NOT NULL
+ GROUP BY ROLLUP(MANAGER_ID);
