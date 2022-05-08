@@ -151,7 +151,5 @@ DELETE FROM 지출내역서_T;
 TRUNCATE TABLE 지출내역서_T;
 ROLLBACK;
 
-      
-
 
 
