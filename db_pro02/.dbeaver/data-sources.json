@@ -4,7 +4,7 @@
 		"oracle_thin-1806e282149-71ad883b31ff6f21": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "Local puser1",
+			"name": "puser1",
 			"save-password": true,
 			"read-only": false,
 			"configuration": {
